@@ -1,59 +1,69 @@
-# 📰 Fake News Detection using NLP and Machine Learning
+## 📰 Fake News Detection using NLP & Machine Learning
 
-This project aims to detect fake news by applying various natural language processing (NLP) techniques and machine learning models. It involves cleaning the text data, visualizing word patterns, and evaluating models to classify news as **real** or **fake**.
-
----
-
-## 📁 Dataset
-- Dataset used: [Kaggle Fake News Dataset](https://www.kaggle.com/datasets/clmentbisaillon/fake-and-real-news-dataset)
-- The dataset includes:
-  - `title`: Headline of the news article
-  - `text`: Full content of the news
-  - `label`: Target variable (1 = Fake, 0 = Real)
+This project aims to classify news articles as **Real** or **Fake** using Natural Language Processing (NLP) techniques and a supervised ML model (**LinearSVC**). The pipeline includes data preprocessing, feature extraction using **TF-IDF**, and model evaluation.
 
 ---
 
-## 🧰 Technologies & Libraries
-- **Python 3**
-- **Pandas**, **NumPy**
-- **Matplotlib**, **Seaborn**
-- **NLTK**, **spaCy**
-- **Scikit-learn**
-- **WordCloud**
+### 📂 Dataset
+
+* **Source**: [Fake and Real News Dataset on Kaggle](https://www.kaggle.com/datasets/clmentbisaillon/fake-and-real-news-dataset)
+* Two CSV files:
+
+  * `Fake.csv`
+  * `True.csv`
 
 ---
 
-## 🧠 Project Workflow
+### 🔧 Technologies Used
 
-### 1. Data Cleaning & Preprocessing
-- Checked for missing and blank text entries
-- Combined title and text into a single column
-- Removed stopwords using both `nltk` and `spaCy`
-- Cleaned special characters and converted text to lowercase
-
-### 2. Exploratory Data Analysis (EDA)
-- Plotted word clouds for both fake and real news
-- Analyzed word frequency and patterns
-
-### 3. Feature Extraction
-- Used **TF-IDF Vectorization** to transform text into numerical features
-
-### 4. Model Training & Evaluation
-Trained the following models:
-- Logistic Regression
-- Naive Bayes
-- Random Forest
-
-Evaluation metrics:
-- Accuracy Score
-- Confusion Matrix
-- Classification Report
+* Python
+* Pandas, NumPy
+* Matplotlib, Seaborn
+* NLTK, spaCy, WordCloud
+* Scikit-learn (TF-IDF, LinearSVC, Pipeline)
+* **SQLite3 (SQL Integration)** ✅
+* Jupyter Notebook / Kaggle Kernels
 
 ---
 
-## ✅ Results
-- The best model achieved an accuracy of **99%** 
-- Visual comparisons of performance were plotted
+### 🚀 Steps Performed
+
+1. **Data Cleaning**
+
+   * Removed duplicates and blank text entries
+   * Cleaned text using regex, lemmatization, and stopword removal
+
+2. **Data Visualization**
+
+   * Countplots of fake vs true news and subjects
+   * Word clouds using `WordCloud` and custom image masks (thumbs-up for real, skull for fake)
+
+3. **Feature Extraction**
+
+   * Used `TfidfVectorizer` for vectorizing cleaned text
+
+4. **Model Building**
+
+   * Used `LinearSVC` with 99%+ accuracy
+   * Trained and evaluated using `train_test_split`
+
+5. **SQL Integration** ✅
+
+   * Created an SQLite database: `fake_news.db`
+   * Stored:
+
+     * Cleaned dataset in `news_data` table
+     * Model predictions (text, actual, predicted category) in `model_predictions` table
+   * Used `sqlite3` and `pandas.to_sql()` for seamless storage and retrieval
 
 ---
+
+### 📈 Results
+
+* Achieved **\~99.3% accuracy** on test data
+* High precision, recall, and F1-score for both real and fake classes
+* All predictions and original data are saved in SQL tables for further querying and analytics
+
+
+
 
